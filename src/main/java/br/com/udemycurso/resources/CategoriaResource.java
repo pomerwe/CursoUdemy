@@ -1,4 +1,4 @@
-package br.com.udemycurso.domain.resources;
+package br.com.udemycurso.resources;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
