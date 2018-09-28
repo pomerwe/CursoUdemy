@@ -1,7 +1,6 @@
 package br.com.udemycurso.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,39 +8,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Categoria implements Serializable {
+public class Estado implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "IDCATEGORIA", nullable=false ,unique=true)
+	@Column(name = "IDESTADO", nullable=false ,unique=true)
 	private Long id;
-	@Column(name = "NOME", nullable=false, length=128)
-	private String categoria;
-
-	@JsonManagedReference
-	@ManyToMany(mappedBy="categorias")
-	private List<Produto> produtos = new ArrayList<>();
+	@Column(name = "ESTADO", nullable=false, length=128)
+	private String estado;
 	
-	public Categoria() {
-		
-		
-	}
-
-	public Categoria(Long id, String nome) {
-		super();
-		this.id = id;
-		this.categoria = nome;
-	}
+	@OneToMany(mappedBy="IDESTADO")
+	private List<Cidade> cidades;
 
 	@Override
 	public int hashCode() {
@@ -59,13 +44,24 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Estado other = (Estado) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	
+	public Estado() {
+		
+	}
+
+	public Estado(Long id, String estado, List<Cidade> cidades) {
+		super();
+		this.id = id;
+		this.estado = estado;
+		this.cidades = cidades;
 	}
 
 	public Long getId() {
@@ -76,21 +72,22 @@ public class Categoria implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return categoria;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setNome(String nome) {
-		this.categoria = nome;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public List<Cidade> getCidades() {
+		return cidades;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setCidades(List<Cidade> cidades) {
+		this.cidades = cidades;
 	}
+	
 	
 	
 }

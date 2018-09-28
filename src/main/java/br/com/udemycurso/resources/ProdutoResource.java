@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.udemycurso.services.ProdutoService;
 
 @RestController
-@RequestMapping(value="/produto")
+@RequestMapping(value="/produtos")
 public class ProdutoResource {
 
 	@Autowired

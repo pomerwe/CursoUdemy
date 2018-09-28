@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.udemycurso.domain.Categoria;
 import br.com.udemycurso.repositories.CategoriaRepository;
+import br.com.udemycurso.services.exceptions.NotFoundException;
 
 @Service
 public class CategoriaService {
@@ -31,16 +32,8 @@ public class CategoriaService {
 	public Categoria validation(Long id){
 		Optional<Categoria> cat = catRep.findById(id);
 		
-		
-		try {
-			if(cat.isPresent()) {
-				return cat.get();
-			}
-		} 	catch (Exception e) {
-				// TODO: handle exception
-				return null;
-		}	
-		
-		return null;
+		return cat.orElseThrow(
+				() -> new NotFoundException("Categoria não encontrada no sistema!")
+				);
 	}
 }
