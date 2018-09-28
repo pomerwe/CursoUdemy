@@ -24,7 +24,7 @@ public class CategoriaService {
 	
 	public Categoria buscarCategoria(Long id){
 		Categoria cat = validation(id);	
-		return cat;
+		return cat ;
 	}
      
      
