@@ -6,11 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import br.com.udemycurso.domain.enums.TipoCliente;
 
@@ -39,8 +42,11 @@ public class Cliente implements Serializable {
 	@Column(name = "TIPOCLIENTE", nullable=false, length=128)
 	private Integer tipo;
 	
+	@OneToMany(mappedBy="cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
+	@ElementCollection
+	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 
 	

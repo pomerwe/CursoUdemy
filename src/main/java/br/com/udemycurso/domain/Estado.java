@@ -25,7 +25,7 @@ public class Estado implements Serializable {
 	@Column(name = "ESTADO", nullable=false, length=128)
 	private String estado;
 	
-	@OneToMany(mappedBy="IDESTADO")
+	@OneToMany(mappedBy="estado")
 	private List<Cidade> cidades;
 
 	@Override
