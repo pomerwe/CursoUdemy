@@ -1,5 +1,10 @@
 package br.com.udemycurso.domain.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.udemycurso.domain.Pedido;
+
 public enum TipoCliente {
 	
 	PESSOAFÍSICA(1,"Pessoa Física"),
@@ -8,6 +13,9 @@ public enum TipoCliente {
 
 	private int cod;	
 	private String descricao;
+	
+	
+	private List<Pedido> pedidos = new ArrayList<>();
 	
 	private TipoCliente(int cod, String descricao) {
 		
@@ -40,6 +48,14 @@ public enum TipoCliente {
 			
 		}
 		throw new IllegalArgumentException("Id inválido: "+ cod);
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 	
 }
