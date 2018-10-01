@@ -14,23 +14,23 @@ import br.com.udemycurso.services.exceptions.NotFoundException;
 public class CategoriaService {
 	
 	@Autowired
-	private CategoriaRepository catRep;
+	private CategoriaRepository catRepo;
 
 	
-	public List<Categoria> listarCategorias(){
+	public List<Categoria> listar(){
 		
-		return catRep.findAll();
+		return catRepo.findAll();
 		
 	}
 	
-	public Categoria buscarCategoria(Long id){
+	public Categoria buscar(Long id){
 		Categoria cat = validation(id);	
 		return cat ;
 	}
      
      
 	public Categoria validation(Long id){
-		Optional<Categoria> cat = catRep.findById(id);
+		Optional<Categoria> cat = catRepo.findById(id);
 		
 		return cat.orElseThrow(
 				() -> new NotFoundException("Categoria não encontrada no sistema!")

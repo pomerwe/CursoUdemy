@@ -11,6 +11,6 @@ import br.com.udemycurso.services.CidadeService;
 public class CidadeResource {
 	
 	@Autowired
-	private CidadeService cityServ;
+	private CidadeService cidServ;
 }
 

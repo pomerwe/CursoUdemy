@@ -22,13 +22,13 @@ public class CategoriaResource {
 	
 	@GetMapping
 	public ResponseEntity<List<Categoria>> listar() {
-		List<Categoria> categorias = catServ.listarCategorias();
+		List<Categoria> categorias = catServ.listar();
 		return ResponseEntity.status(HttpStatus.OK).body(categorias);
 		
 	}
 	@GetMapping("/{id}")
 	public ResponseEntity<Categoria> buscarCategoria(@PathVariable("id") Long id){
-		Categoria categoria = catServ.buscarCategoria(id);
+		Categoria categoria = catServ.buscar(id);
 		return ResponseEntity.status(HttpStatus.OK).body(categoria);
 		
 	}
