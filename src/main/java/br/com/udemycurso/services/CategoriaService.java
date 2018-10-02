@@ -36,4 +36,10 @@ public class CategoriaService {
 				() -> new NotFoundException("Categoria não encontrada no sistema!")
 				);
 	}
+	
+	public Categoria salvar(Categoria categoria) {
+		categoria.setId(null);
+		return this.catRepo.save(categoria);
+		
+	}
 }
