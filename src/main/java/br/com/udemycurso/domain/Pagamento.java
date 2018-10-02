@@ -39,6 +39,9 @@ public abstract class  Pagamento implements Serializable {
 	}
 
 	
+	
+
+	
 	public Pagamento(Long id, Integer estado, Pedido pedido) {
 		super();
 		this.id = id;
@@ -46,7 +49,10 @@ public abstract class  Pagamento implements Serializable {
 		this.pedido = pedido;
 	}
 
-	
+
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

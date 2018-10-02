@@ -2,6 +2,8 @@ package br.com.udemycurso.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,14 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Pedido  implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,6 +28,7 @@ public class Pedido  implements Serializable {
 	@Column(name = "IDPEDIDO", nullable=false ,unique=true)
 	private Long id;
 	@Column(name = "INSTANTE", nullable=false, length=128)
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private LocalDateTime instante;
 	
 	@OneToOne(cascade=CascadeType.ALL)
@@ -38,6 +41,9 @@ public class Pedido  implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="IDENDERECOENTREGA")
 	private Endereco enderecoDeEntrega;
+	
+	@OneToMany(mappedBy="id.pedido")
+	private Set<ItemPedido> itens= new HashSet<>();
 	
 	public Pedido() {
 		
@@ -143,6 +149,22 @@ public class Pedido  implements Serializable {
 
 	public void setEnderecoDeEntrega(Endereco enderecoDeEntrega) {
 		this.enderecoDeEntrega = enderecoDeEntrega;
+	}
+
+
+
+
+
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+
+
+
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	

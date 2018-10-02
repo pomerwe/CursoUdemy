@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 
-import br.com.udemycurso.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class PagamentoComBoleto extends Pagamento{
@@ -13,7 +13,9 @@ public class PagamentoComBoleto extends Pagamento{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private LocalDateTime dataVencimento;
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private LocalDateTime dataPagamento;
 	
 	public PagamentoComBoleto() {
@@ -21,7 +23,7 @@ public class PagamentoComBoleto extends Pagamento{
 		
 	}
 
-	public PagamentoComBoleto(Long id, EstadoPagamento estado, Pedido pedido, LocalDateTime dataVencimento,LocalDateTime dataPagamento) {
+	public PagamentoComBoleto(Long id, Integer estado, Pedido pedido, LocalDateTime dataVencimento,LocalDateTime dataPagamento) {
 		super(id, estado, pedido);
 		this.dataPagamento=dataPagamento;
 		this.dataVencimento=dataVencimento;

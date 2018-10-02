@@ -2,8 +2,6 @@ package br.com.udemycurso.domain;
 
 import javax.persistence.Entity;
 
-import br.com.udemycurso.domain.enums.EstadoPagamento;
-
 @Entity
 public class PagamentoComCartao extends Pagamento {
 
@@ -18,7 +16,7 @@ public class PagamentoComCartao extends Pagamento {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PagamentoComCartao(Long id, EstadoPagamento estado, Pedido pedido, Integer numeroDeParcelas ) {
+	public PagamentoComCartao(Long id, Integer estado, Pedido pedido, Integer numeroDeParcelas ) {
 		super(id, estado, pedido);
 		this.numeroDeParcelas=numeroDeParcelas;
 		// TODO Auto-generated constructor stub
