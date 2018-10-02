@@ -23,15 +23,15 @@ public List<Cidade> listar(){
 	}
 	
 	public Cidade buscar(Long id){
-		Cidade cat = validation(id);	
-		return cat ;
+		Cidade x = validation(id);	
+		return x ;
 	}
      
      
 	public Cidade validation(Long id){
-		Optional<Cidade> cat = cidRepo.findById(id);
+		Optional<Cidade> x = cidRepo.findById(id);
 		
-		return cat.orElseThrow(
+		return x.orElseThrow(
 				() -> new NotFoundException("Cidade não encontrada no sistema!")
 				);
 	}

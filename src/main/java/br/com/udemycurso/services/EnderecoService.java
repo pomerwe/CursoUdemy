@@ -23,15 +23,15 @@ public List<Endereco> listar(){
 	}
 	
 	public Endereco buscar(Long id){
-		Endereco cat = validation(id);	
-		return cat ;
+		Endereco x = validation(id);	
+		return x ;
 	}
      
      
 	public Endereco validation(Long id){
-		Optional<Endereco> cat = endRepo.findById(id);
+		Optional<Endereco> x = endRepo.findById(id);
 		
-		return cat.orElseThrow(
+		return x.orElseThrow(
 				() -> new NotFoundException("Endereco não encontrada no sistema!")
 				);
 	}

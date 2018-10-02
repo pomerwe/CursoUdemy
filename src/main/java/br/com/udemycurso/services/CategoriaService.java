@@ -24,15 +24,15 @@ public class CategoriaService {
 	}
 	
 	public Categoria buscar(Long id){
-		Categoria cat = validation(id);	
-		return cat ;
+		Categoria x = validation(id);	
+		return x ;
 	}
      
      
 	public Categoria validation(Long id){
-		Optional<Categoria> cat = catRepo.findById(id);
+		Optional<Categoria> x = catRepo.findById(id);
 		
-		return cat.orElseThrow(
+		return x.orElseThrow(
 				() -> new NotFoundException("Categoria não encontrada no sistema!")
 				);
 	}

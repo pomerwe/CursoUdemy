@@ -6,34 +6,33 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.udemycurso.domain.Estado;
-import br.com.udemycurso.repositories.EstadoRepository;
+import br.com.udemycurso.domain.Pedido;
+import br.com.udemycurso.repositories.PedidoRepository;
 import br.com.udemycurso.services.exceptions.NotFoundException;
 
 @Service
-public class EstadoService {
+public class PedidoService {
 
 	@Autowired
-	private EstadoRepository estRepo;
+	private PedidoRepository pedRepo;
 	
-public List<Estado> listar(){
+public List<Pedido> listar(){
 		
-		return estRepo.findAll();
+		return pedRepo.findAll();
 		
 	}
 	
-	public Estado buscar(Long id){
-		Estado x = validation(id);	
+	public Pedido buscar(Long id){
+		Pedido x = validation(id);	
 		return x ;
 	}
      
      
-	public Estado validation(Long id){
-		Optional<Estado> x = estRepo.findById(id);
+	public Pedido validation(Long id){
+		Optional<Pedido> x = pedRepo.findById(id);
 		
 		return x.orElseThrow(
 				() -> new NotFoundException("Estado não encontrada no sistema!")
 				);
 	}
 }
-

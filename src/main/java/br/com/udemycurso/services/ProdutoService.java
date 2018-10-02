@@ -23,15 +23,15 @@ public List<Produto> listar(){
 	}
 	
 	public Produto buscar(Long id){
-		Produto cat = validation(id);	
-		return cat ;
+		Produto x = validation(id);	
+		return x ;
 	}
      
      
 	public Produto validation(Long id){
-		Optional<Produto> cat = prodRepo.findById(id);
+		Optional<Produto> x = prodRepo.findById(id);
 		
-		return cat.orElseThrow(
+		return x.orElseThrow(
 				() -> new NotFoundException("Produto não encontrada no sistema!")
 				);
 	}

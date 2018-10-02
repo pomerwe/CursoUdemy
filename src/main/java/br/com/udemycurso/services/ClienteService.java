@@ -23,15 +23,15 @@ public List<Cliente> listar(){
 	}
 	
 	public Cliente buscar(Long id){
-		Cliente cat = validation(id);	
-		return cat ;
+		Cliente x = validation(id);	
+		return x ;
 	}
      
      
 	public Cliente validation(Long id){
-		Optional<Cliente> cat = cliRepo.findById(id);
+		Optional<Cliente> x = cliRepo.findById(id);
 		
-		return cat.orElseThrow(
+		return x.orElseThrow(
 				() -> new NotFoundException("Cliente não encontrada no sistema!")
 				);
 	}
