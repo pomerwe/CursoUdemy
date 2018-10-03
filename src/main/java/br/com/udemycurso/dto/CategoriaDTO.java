@@ -14,7 +14,7 @@ public class CategoriaDTO implements Serializable {
 
 	private Long id;
 	
-	@NotEmpty(message="A categoria deve ter um nome obrigatoriamente")
+	@NotEmpty(message="Campo deve ser preenchido")
 	@Length(min=3,max=256, message="Deve possuir ao menos 3 caracteres e no máximo 256")
 	private String categoria;
 	

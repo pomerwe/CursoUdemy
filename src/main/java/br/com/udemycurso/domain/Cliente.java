@@ -61,16 +61,13 @@ public class Cliente implements Serializable {
 		
 	}
 	
-	public Cliente(Long id, String nome, String email, String cpf_cnpj, TipoCliente tipo, List<Endereco> enderecos,
-			Set<String> telefones) {
+	public Cliente(Long id, String nome, String email, String cpf_cnpj, TipoCliente tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.cpf_cnpj = cpf_cnpj;
-		this.tipo = tipo.getCod();
-		this.enderecos = enderecos;
-		this.telefones = telefones;
+		this.tipo =(tipo == null) ? null : tipo.getCod();
 	}
 
 	@Override
