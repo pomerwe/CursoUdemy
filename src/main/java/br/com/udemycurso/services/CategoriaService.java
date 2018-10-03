@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.udemycurso.domain.Categoria;
+import br.com.udemycurso.dto.CategoriaDTO;
 import br.com.udemycurso.repositories.CategoriaRepository;
 import br.com.udemycurso.services.exceptions.BadRequestException;
 import br.com.udemycurso.services.exceptions.NotFoundException;
@@ -42,7 +43,7 @@ public class CategoriaService {
 				);
 	}
 	
-	public Categoria salvar(Categoria categoria) {
+	public Categoria salvar(Categoria categoria) {		
 		categoria.setId(null);
 		return this.catRepo.save(categoria);
 		
@@ -71,6 +72,10 @@ public class CategoriaService {
 	public Page<Categoria> listarPages(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return catRepo.findAll(pageRequest);
+		
+	}
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(),objDto.getCategoria());
 		
 	}
 }

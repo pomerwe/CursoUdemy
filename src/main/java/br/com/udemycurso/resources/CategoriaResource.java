@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -45,8 +47,8 @@ public class CategoriaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> salvar(@RequestBody Categoria categoria){
-	
+	public ResponseEntity<Categoria> salvar(@Valid @RequestBody CategoriaDTO objDto){
+		Categoria categoria = catServ.fromDTO(objDto);
 		categoria =this.catServ.salvar(categoria);
 		URI uri = ServletUriComponentsBuilder.
 				fromCurrentRequest().
@@ -58,8 +60,8 @@ public class CategoriaResource {
 	}
 	
 	@PutMapping(value="/{id}")
-	public ResponseEntity<Categoria> atualizar(@PathVariable("id") Long id,@RequestBody Categoria categoria){
-	
+	public ResponseEntity<Categoria> atualizar(@PathVariable("id") Long id,@Valid @RequestBody CategoriaDTO objDto){
+	    Categoria categoria = catServ.fromDTO(objDto);
 		categoria =this.catServ.atualizar(id,categoria);
 		URI uri = ServletUriComponentsBuilder.
 				fromCurrentRequest().
