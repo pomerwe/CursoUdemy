@@ -2,6 +2,7 @@ package br.com.udemycurso.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.udemycurso.domain.Categoria;
+import br.com.udemycurso.dto.CategoriaDTO;
 import br.com.udemycurso.services.CategoriaService;
 
 @RestController
@@ -27,9 +29,10 @@ public class CategoriaResource {
 	private CategoriaService catServ;
 	
 	@GetMapping
-	public ResponseEntity<List<Categoria>> listar() {
+	public ResponseEntity<List<CategoriaDTO>> listar() {
 		List<Categoria> categorias = catServ.listar();
-		return ResponseEntity.status(HttpStatus.OK).body(categorias);
+		List<CategoriaDTO> categoriasDto = categorias.stream().map(categoria -> new CategoriaDTO(categoria)).collect(Collectors.toList());
+		return ResponseEntity.status(HttpStatus.OK).body(categoriasDto);
 		
 	}
 	@GetMapping("/{id}")

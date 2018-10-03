@@ -2,12 +2,15 @@ package br.com.udemycurso.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.udemycurso.domain.Categoria;
+import br.com.udemycurso.dto.CategoriaDTO;
 import br.com.udemycurso.repositories.CategoriaRepository;
 import br.com.udemycurso.services.exceptions.BadRequestException;
 import br.com.udemycurso.services.exceptions.NotFoundException;
@@ -19,8 +22,8 @@ public class CategoriaService {
 	private CategoriaRepository catRepo;
 
 	
-	public List<Categoria> listar(){
-		
+	public List<Categoria> listar(){		                                      
+		                                        
 		return catRepo.findAll();
 		
 	}
