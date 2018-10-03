@@ -1,17 +1,17 @@
 package br.com.udemycurso.services.exceptions;
 
-public class NotFoundException extends RuntimeException{
+public class BadRequestException extends RuntimeException{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public NotFoundException(String msg) {
+	public BadRequestException(String msg) {
 		super(msg);
 		
 	}
-	public NotFoundException(String msg, Throwable cause) {
+	public BadRequestException(String msg, Throwable cause) {
 		super(msg,cause);
 		
 	}
