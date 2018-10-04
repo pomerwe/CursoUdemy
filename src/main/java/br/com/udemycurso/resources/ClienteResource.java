@@ -23,6 +23,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.udemycurso.domain.Cliente;
 import br.com.udemycurso.dto.ClienteDTO;
+import br.com.udemycurso.dto.ClienteNewDTO;
 import br.com.udemycurso.services.ClienteService;
 
 @RestController
@@ -47,7 +48,7 @@ public class ClienteResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Cliente> salvar(@Valid @RequestBody ClienteDTO objDto){
+	public ResponseEntity<Cliente> salvar(@Valid @RequestBody ClienteNewDTO objDto){
 		Cliente cliente = cliServ.fromDTO(objDto);
 		cliente =this.cliServ.salvar(cliente);
 		URI uri = ServletUriComponentsBuilder.

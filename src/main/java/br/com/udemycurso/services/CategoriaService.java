@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.udemycurso.domain.Categoria;
+import br.com.udemycurso.domain.Cliente;
 import br.com.udemycurso.dto.CategoriaDTO;
 import br.com.udemycurso.repositories.CategoriaRepository;
 import br.com.udemycurso.services.exceptions.BadRequestException;
@@ -52,9 +53,15 @@ public class CategoriaService {
 	public Categoria atualizar(Long id, Categoria categoria) {
 		
 		Categoria catdb=buscar(id);		
-		categoria.setId(catdb.getId());
+		updateData(catdb,categoria);
 		
-		return this.catRepo.save(categoria);
+		return this.catRepo.save(catdb);
+		
+		
+	}
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
+		
 		
 		
 	}
