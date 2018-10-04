@@ -84,7 +84,7 @@ public List<Cliente> listar(){
 			this.repo.deleteById(cat.getId());
 			
 		} catch (DataIntegrityViolationException e) {
-			throw new BadRequestException("Não é possível excluir pois há entidades relacionadas!");
+			throw new BadRequestException("Não é possível excluir pois há pedidos relacionados!");
 		}
 		
 	}
