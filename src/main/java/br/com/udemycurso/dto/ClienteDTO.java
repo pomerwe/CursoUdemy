@@ -1,5 +1,6 @@
 package br.com.udemycurso.dto;
 
+
 import java.io.Serializable;
 
 import javax.validation.constraints.Email;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.udemycurso.domain.Cliente;
+
 
 public class ClienteDTO implements Serializable {
 	

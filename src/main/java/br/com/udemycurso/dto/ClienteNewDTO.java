@@ -2,23 +2,46 @@ package br.com.udemycurso.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.Length;
+
+import br.com.udemycurso.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
+	@NotEmpty(message="Campo deve ser preenchido")
+	@Length(min=3,max=256, message="Deve possuir ao menos 3 caracteres e no máximo 256")
 	private String nome;	
+	
+	@NotEmpty(message="Campo deve ser preenchido")
+	@Email(message="Email inválido")
 	private String email;	
-	private String cpf_cnpj;	
+	
+	@NotEmpty(message="Campo deve ser preenchido")
+	private String cpf_cnpj;
+	
 	private Integer tipo;
 	
+	@NotEmpty(message="Campo deve ser preenchido")
 	private String logradouro;
+	
+	@NotEmpty(message="Campo deve ser preenchido")
 	private String numero;
+	
+	
 	private String complemeto;
+	
 	private String bairro;
+	
+	@NotEmpty(message="Campo deve ser preenchido")
 	private String cep;
 	
+	@NotEmpty(message="Pelo menos 1 telefone deve ser colocado para contato!")
 	private String telefone1;
 	private String telefone2;
 	private String telefone3;
