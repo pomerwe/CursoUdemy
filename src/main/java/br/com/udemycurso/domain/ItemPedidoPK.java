@@ -23,7 +23,6 @@ public class ItemPedidoPK implements Serializable{
 	private Pedido pedido;
 
 	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,6 +53,8 @@ public class ItemPedidoPK implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
 
 	public Produto getProduto() {
 		return produto;
@@ -70,6 +71,7 @@ public class ItemPedidoPK implements Serializable{
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
+	
 	
 	
 }
