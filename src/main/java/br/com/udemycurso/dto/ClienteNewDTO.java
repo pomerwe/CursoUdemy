@@ -23,7 +23,7 @@ public class ClienteNewDTO implements Serializable {
 	private String email;	
 	
 	@NotEmpty(message="Campo deve ser preenchido")
-	private String cpf_cnpj;
+	private String cpfcnpj;
 	
 	private Integer tipo;
 	
@@ -34,7 +34,7 @@ public class ClienteNewDTO implements Serializable {
 	private String numero;
 	
 	
-	private String complemeto;
+	private String complemento;
 	
 	private String bairro;
 	
@@ -69,12 +69,12 @@ public class ClienteNewDTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getCpf_cnpj() {
-		return cpf_cnpj;
+	public String getCpfcnpj() {
+		return cpfcnpj;
 	}
 
-	public void setCpf_cnpj(String cpf_cnpj) {
-		this.cpf_cnpj = cpf_cnpj;
+	public void setCpfcnpj(String cpfcnpj) {
+		this.cpfcnpj = cpfcnpj;
 	}
 
 	public Integer getTipo() {

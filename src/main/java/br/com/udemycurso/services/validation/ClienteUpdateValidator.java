@@ -11,8 +11,6 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.jayway.jsonpath.ParseContext;
-
 import br.com.udemycurso.domain.Cliente;
 import br.com.udemycurso.dto.ClienteDTO;
 import br.com.udemycurso.repositories.ClienteRepository;

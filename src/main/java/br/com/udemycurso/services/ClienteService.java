@@ -17,6 +17,7 @@ import br.com.udemycurso.domain.Endereco;
 import br.com.udemycurso.domain.enums.TipoCliente;
 import br.com.udemycurso.dto.ClienteDTO;
 import br.com.udemycurso.dto.ClienteNewDTO;
+import br.com.udemycurso.repositories.CidadeRepository;
 import br.com.udemycurso.repositories.ClienteRepository;
 import br.com.udemycurso.repositories.EnderecoRepository;
 import br.com.udemycurso.services.exceptions.BadRequestException;
@@ -30,6 +31,9 @@ public class ClienteService {
 	
 	@Autowired
 	private EnderecoRepository endRepo;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
 	
 public List<Cliente> listar(){
 		
@@ -99,8 +103,8 @@ public List<Cliente> listar(){
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO objDto) {
-		Cliente cli = new Cliente(null,objDto.getNome(),objDto.getEmail(),objDto.getCpf_cnpj(),TipoCliente.toEnum(objDto.getTipo()));
-		Cidade cid = new Cidade(objDto.getIdCidade(),null,null);
+		Cliente cli = new Cliente(null,objDto.getNome(),objDto.getEmail(),objDto.getCpfcnpj(),TipoCliente.toEnum(objDto.getTipo()));
+		Cidade cid = cidadeRepository.findById(objDto.getIdCidade()).get();
 	    Endereco end = new Endereco(null,objDto.getLogradouro(),objDto.getNumero(),objDto.getComplemeto(),objDto.getBairro(),objDto.getCep(),cid,cli);
 	    cli.getEnderecos().add(end);
 	    cli.getTelefones().add(objDto.getTelefone1());

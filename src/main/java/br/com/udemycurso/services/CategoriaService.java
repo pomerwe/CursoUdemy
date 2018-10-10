@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.udemycurso.domain.Categoria;
-import br.com.udemycurso.domain.Cliente;
 import br.com.udemycurso.dto.CategoriaDTO;
 import br.com.udemycurso.repositories.CategoriaRepository;
 import br.com.udemycurso.services.exceptions.BadRequestException;

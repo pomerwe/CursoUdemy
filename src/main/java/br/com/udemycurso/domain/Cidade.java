@@ -20,9 +20,9 @@ public class Cidade implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "IDCIDADE", nullable=false ,unique=true)
+	@Column(name = "IDCIDADE", unique=true)
 	private Long id;
-	@Column(name = "CIDADE", nullable=false, length=128)
+	@Column(name = "CIDADE",  length=128)
 	private String cidade;
 	
 	
