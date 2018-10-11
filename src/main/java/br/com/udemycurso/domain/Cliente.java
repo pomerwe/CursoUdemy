@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -45,6 +46,9 @@ public class Cliente implements Serializable {
 	@Column(name = "TIPOCLIENTE", nullable=false, length=128)
 	private Integer tipo;
 	
+	@JsonIgnore
+	@OneToOne(mappedBy="cliente")
+	private Senha senha;
 	
 	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -69,6 +73,7 @@ public class Cliente implements Serializable {
 		this.email = email;
 		this.cpfcnpj = cpfcnpj;
 		this.tipo =(tipo == null) ? null : tipo.getCod();
+		
 	}
 
 	@Override
@@ -94,6 +99,15 @@ public class Cliente implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	
+
+	public Senha getSenha() {
+		return senha;
+	}
+
+	public void setSenha(Senha senha) {
+		this.senha = senha;
 	}
 
 	public Long getId() {

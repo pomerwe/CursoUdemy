@@ -56,12 +56,12 @@ public class Endereco implements Serializable {
 	}
 	
 	
-	public Endereco(Long id, String logradouro, String numero, String complemeto, String bairro, String cep, Cidade cidade,Cliente cliente) {
+	public Endereco(Long id, String logradouro, String numero, String complemento, String bairro, String cep, Cidade cidade,Cliente cliente) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
 		this.numero = numero;
-		this.complemeto = complemeto;
+		this.complemento = complemento;
 		this.bairro = bairro;
 		this.cep = cep;
 		this.cidade=cidade;
@@ -117,12 +117,12 @@ public class Endereco implements Serializable {
 		this.numero = numero;
 	}
 
-	public String getComplemeto() {
-		return complemeto;
+	public String getComplemento() {
+		return complemento;
 	}
 
-	public void setComplemeto(String complemeto) {
-		this.complemeto = complemeto;
+	public void setComplemeto(String complemento) {
+		this.complemento = complemento;
 	}
 
 	public String getBairro() {

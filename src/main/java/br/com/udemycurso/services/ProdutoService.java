@@ -52,4 +52,6 @@ public List<Produto> listar(){
 		return repo.pesquisar(produto,categorias,pageRequest);
 		
 	}
+	
+	
 }

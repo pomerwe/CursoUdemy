@@ -46,6 +46,10 @@ public class ClienteNewDTO implements Serializable {
 	private String telefone2;
 	private String telefone3;
 	
+	@NotEmpty(message="Campo deve ser preenchido")
+	@Length(min=3,max=256, message="Deve possuir ao menos 3 caracteres e no máximo 256")
+	private String senha;
+	
 	private Long idCidade;
 	
 	public ClienteNewDTO() {
@@ -101,12 +105,8 @@ public class ClienteNewDTO implements Serializable {
 		this.numero = numero;
 	}
 
-	public String getComplemeto() {
-		return complemeto;
-	}
-
-	public void setComplemeto(String complemeto) {
-		this.complemeto = complemeto;
+	public String getComplemento() {
+		return complemento;
 	}
 
 	public String getBairro() {
@@ -147,6 +147,18 @@ public class ClienteNewDTO implements Serializable {
 
 	public void setTelefone3(String telefone3) {
 		this.telefone3 = telefone3;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 	public Long getIdCidade() {
