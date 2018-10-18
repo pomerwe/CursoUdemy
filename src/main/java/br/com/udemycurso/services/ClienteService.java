@@ -16,6 +16,7 @@ import br.com.udemycurso.domain.Cidade;
 import br.com.udemycurso.domain.Cliente;
 import br.com.udemycurso.domain.Endereco;
 import br.com.udemycurso.domain.Senha;
+import br.com.udemycurso.domain.enums.Perfil;
 import br.com.udemycurso.domain.enums.TipoCliente;
 import br.com.udemycurso.dto.ClienteDTO;
 import br.com.udemycurso.dto.ClienteNewDTO;
@@ -23,12 +24,16 @@ import br.com.udemycurso.repositories.CidadeRepository;
 import br.com.udemycurso.repositories.ClienteRepository;
 import br.com.udemycurso.repositories.EnderecoRepository;
 import br.com.udemycurso.repositories.SenhaRepository;
+import br.com.udemycurso.security.UserSS;
+import br.com.udemycurso.services.exceptions.AuthorizationException;
 import br.com.udemycurso.services.exceptions.BadRequestException;
 import br.com.udemycurso.services.exceptions.NotFoundException;
 
 @Service
 public class ClienteService {
 
+	
+	
 	@Autowired
 	private BCryptPasswordEncoder pe;
 	
@@ -51,6 +56,11 @@ public List<Cliente> listar(){
 	}
 	
 	public Cliente buscar(Long id){
+		UserSS user = UserService.authenticatedUser();
+		if(user==null || !user.hasRole(Perfil.ADMIN)  && user.getId()!=id) {
+			throw new AuthorizationException("Acesso negado");
+			
+		}
 		Cliente x = validation(id);	
 		return x ;
 	}
