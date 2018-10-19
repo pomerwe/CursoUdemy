@@ -27,6 +27,7 @@ import br.com.udemycurso.services.exceptions.NotFoundException;
 @Service
 public class PedidoService {
 
+	
 	@Autowired
 	private ClienteService cliServ;
 	
@@ -78,6 +79,7 @@ public List<Pedido> listar(){
 		obj.setInstante(LocalDateTime.now());
 		obj.getPagamento().setEstado(EstadoPagamento.PENDENTE);
 		obj.getPagamento().setPedido(obj);
+		obj.setCliente(cliServ.buscar(obj.getCliente().getId()));
 		if(obj.getPagamento() instanceof PagamentoComBoleto) {			
 			PagamentoComBoleto pagto = (PagamentoComBoleto) obj.getPagamento();
 			boletoService.prencherPagamentoComBoleto(pagto , obj.getInstante());
@@ -86,7 +88,8 @@ public List<Pedido> listar(){
 		this.pagRepo.save(obj.getPagamento());
 		for(ItemPedido ip : obj.getItens()) {
 			ip.setDesconto(0.0);
-			ip.setPreco(produtoService.buscar(ip.getProduto().getId()).getPreco());
+			ip.setProduto(produtoService.buscar(ip.getProduto().getId()));
+			ip.setPreco(ip.getProduto().getPreco());
 			ip.setPedido(obj);
 			
 		}
