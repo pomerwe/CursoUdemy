@@ -14,7 +14,6 @@ import br.com.udemycurso.domain.Cliente;
 import br.com.udemycurso.domain.ItemPedido;
 import br.com.udemycurso.domain.PagamentoComBoleto;
 import br.com.udemycurso.domain.Pedido;
-import br.com.udemycurso.domain.Produto;
 import br.com.udemycurso.domain.enums.EstadoPagamento;
 import br.com.udemycurso.domain.enums.Perfil;
 import br.com.udemycurso.repositories.ItemPedidoRepository;
@@ -27,6 +26,8 @@ import br.com.udemycurso.services.exceptions.NotFoundException;
 @Service
 public class PedidoService {
 
+	@Autowired
+	private EmailService emailService;
 	
 	@Autowired
 	private ClienteService cliServ;
@@ -94,6 +95,7 @@ public List<Pedido> listar(){
 			
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
+		emailService.sendOrderEmailConfirmation(obj);
 		return obj;
 	}
 	
