@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -117,14 +116,6 @@ public class Cliente implements Serializable {
 	public void addPerfil(Perfil perfil) {		
 		this.perfis.add(perfil.getCod());
 	}
-	
-	public Senha getSenha() {
-		return senha;
-	}
-
-	public void setSenha(Senha senha) {
-		this.senha = senha;
-	}
 
 	public Long getId() {
 		return id;
@@ -158,12 +149,20 @@ public class Cliente implements Serializable {
 		this.cpfcnpj = cpfcnpj;
 	}
 
-	public TipoCliente getTipo() {
-		return TipoCliente.toEnum(tipo);
+	public Integer getTipo() {
+		return tipo;
 	}
 
-	public void setTipo(TipoCliente tipo) {
-		this.tipo = tipo.getCod();
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+	}
+
+	public Senha getSenha() {
+		return senha;
+	}
+
+	public void setSenha(Senha senha) {
+		this.senha = senha;
 	}
 
 	public List<Endereco> getEnderecos() {
@@ -189,10 +188,7 @@ public class Cliente implements Serializable {
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
-	}
+	
 	
 	
 	

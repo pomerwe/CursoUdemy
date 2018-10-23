@@ -3,12 +3,12 @@ package br.com.udemycurso.domain;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -28,15 +27,15 @@ public class Pedido  implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "IDPEDIDO", nullable=false ,unique=true)
+	@Column(name = "IDPEDIDO")
 	private Long id;
 	@Column(name = "INSTANTE", nullable=false, length=128)
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
-	private LocalDateTime instante;
+	private Date instante;
 	
+	@Column(name = "VALORTOTAL")
+	private Double valorTotal;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	private Pagamento pagamento;
 	
 	
 	@ManyToOne
@@ -59,11 +58,11 @@ public class Pedido  implements Serializable {
 
 
 
-	public Pedido(Long id, LocalDateTime instante, Pagamento pagamento, Cliente cliente, Endereco enderecoDeEntrega) {
+	public Pedido(Long id, Date instante, Pagamento pagamento, Cliente cliente, Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
 		this.instante = instante;
-		this.pagamento = pagamento;
+		
 		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
@@ -101,35 +100,28 @@ public class Pedido  implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public LocalDateTime getInstante() {
+	public Date getInstante() {
 		return instante;
 	}
-	public void setInstante(LocalDateTime instante) {
+	public void setInstante(Date instante) {
 		this.instante = instante;
 	}
 
 
 
-	public double getValorTotal() {
+	public void setValorTotal(List<ItemPedido> itens) {
 		double soma = 0.0;
 		for(ItemPedido ip : itens) {
 			
-			soma=soma+ip.getSubTotal();
+			soma=(soma+ip.getSubTotal());
 		}
-		return soma;
+		this.valorTotal = soma;
 	}
 
 
-	public Pagamento getPagamento() {
-		return pagamento;
-	}
-
-
-
-
-
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
+	public Double getValorTotal() {
+		
+		return this.valorTotal;
 	}
 
 
@@ -196,13 +188,12 @@ public class Pedido  implements Serializable {
 		builder.append(", Cliente: ");
 		builder.append(getCliente().getNome() + " " + getCliente().getCpfcnpj());
 		builder.append(", Situação do Pagamento: ");
-		builder.append(getPagamento().getEstado().getDescricao());
 		builder.append("\n Detalhes \n ");
 		for(ItemPedido x : getItens()) {
 			builder.append(x.toString());
 		}
 		builder.append("\n Valor total: ");
-		builder.append(nf.format(getValorTotal()));
+		builder.append(getValorTotal());
 		
 		return builder.toString();
 	}

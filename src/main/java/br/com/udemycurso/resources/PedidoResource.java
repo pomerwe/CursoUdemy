@@ -1,7 +1,6 @@
 package br.com.udemycurso.resources;
 
 import java.net.URI;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -20,13 +19,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.udemycurso.domain.Cliente;
 import br.com.udemycurso.domain.Pedido;
-import br.com.udemycurso.domain.Produto;
-import br.com.udemycurso.dto.ProdutoDTO;
-import br.com.udemycurso.resources.utils.URL;
+import br.com.udemycurso.dto.PedidoDTO;
 import br.com.udemycurso.services.PedidoService;
 
 @RestController
-@RequestMapping(value="/pedido")
+@RequestMapping(value="/pedido",consumes={"application/json"})
 public class PedidoResource {
 
 	@Autowired
@@ -46,9 +43,9 @@ public class PedidoResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Cliente> salvar(@Valid @RequestBody Pedido obj){
-
-		obj =this.pedServ.salvar(obj);
+	public ResponseEntity<Cliente> salvar(@Valid @RequestBody PedidoDTO objDto){
+        Pedido obj = this.pedServ.savePedido(objDto);
+//		obj =this.pedServ.salvar(obj);
 		URI uri = ServletUriComponentsBuilder.
 				fromCurrentRequest().
 				path("/{id}").
