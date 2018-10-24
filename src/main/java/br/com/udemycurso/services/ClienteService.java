@@ -140,4 +140,19 @@ public List<Cliente> listar(){
 	    }
 	    return cli;
 	}
+	
+	public Cliente buscarPeloEmail(String email) {
+		UserSS user = UserService.authenticatedUser();
+		
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername()) ) {
+			throw new AuthorizationException("Acesso negado!");
+		}
+		
+		Cliente cli = repo.findByEmail(email) ;
+		if(cli == null) {
+			
+			throw new NotFoundException("Email não se encontra no sistema!");
+		}
+		return cli;
+	}
 }

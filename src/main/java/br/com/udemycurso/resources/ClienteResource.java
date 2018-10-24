@@ -49,6 +49,13 @@ public class ClienteResource {
 		
 	}
 	
+	@GetMapping("/email")
+	public ResponseEntity<Cliente> buscarCliente(@RequestParam(value = "email")String email){
+		Cliente cliente = cliServ.buscarPeloEmail(email);
+		return ResponseEntity.status(HttpStatus.OK).body(cliente);
+		
+	}
+	
 	@PostMapping
 	public ResponseEntity<Cliente> salvar(@Valid @RequestBody ClienteNewDTO objDto){
 		Cliente cliente = cliServ.fromDTO(objDto);
