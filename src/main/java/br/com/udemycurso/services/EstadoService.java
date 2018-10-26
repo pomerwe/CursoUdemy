@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.udemycurso.domain.Estado;
@@ -14,11 +17,11 @@ import br.com.udemycurso.services.exceptions.NotFoundException;
 public class EstadoService {
 
 	@Autowired
-	private EstadoRepository estRepo;
+	private EstadoRepository repo;
 	
 public List<Estado> listar(){
 		
-		return estRepo.findAll();
+		return repo.findAll();
 		
 	}
 	
@@ -29,11 +32,21 @@ public List<Estado> listar(){
      
      
 	public Estado validation(Long id){
-		Optional<Estado> x = estRepo.findById(id);
+		Optional<Estado> x = repo.findById(id);
 		
 		return x.orElseThrow(
 				() -> new NotFoundException("Estado não encontrada no sistema!")
 				);
 	}
+	
+	
+public Page<Estado> pesquisar(String estado, Integer page, Integer linesPerPage, String orderBy,String direction){
+		
+		@SuppressWarnings("deprecation")
+		PageRequest pageRequest= new PageRequest(page,linesPerPage , Direction.valueOf(direction),orderBy);
+		return repo.pesquisar(estado,pageRequest);
+		
+	}
+	
 }
 
