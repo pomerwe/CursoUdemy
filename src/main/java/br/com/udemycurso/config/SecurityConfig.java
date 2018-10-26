@@ -1,5 +1,8 @@
 package br.com.udemycurso.config;
 
+
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -67,8 +70,10 @@ public static final String[] PUBLIC_MATCHERS_POST = {
 	
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {		
+		CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
+		config.setAllowedMethods(Arrays.asList("PUT","POST","GET","DELETE","OPTIONS"));
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+		source.registerCorsConfiguration("/**", config );
 		return source;
 	}
 	
